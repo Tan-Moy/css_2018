@@ -10,6 +10,7 @@
 	background-size: cover; /*always fit the image inside the box*/
 	background-position: top; /*crops the bottom as viewport size changes but top remains fixed*/
 
+	-webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 	clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /*clippy for ready made polygons*/
 	position: relative; /*makes this container act as reference to  its children*/
 
