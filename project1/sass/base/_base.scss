@@ -1,0 +1,15 @@
+*,
+*::after,
+*::before {
+	margin:0;
+	padding: 0;
+	box-sizing: inherit; /*forcing the box sizing property to be inherited as this is a good practice*/
+}
+
+html{
+	font-size: 62.5%; /*we set the root font size to 62.5% of the default provided by the browser which is equal to 10px in this case so now 1rem = 10px leading to easy calculations. Also we can use breakpoints to change only this instead of everything. Also the user can now freely change everything */
+}
+
+body{
+	box-sizing:border-box; /*border and padding are excluded from height and width calculations*/
+}

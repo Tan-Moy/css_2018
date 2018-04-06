@@ -1,0 +1,173 @@
+/*
+COLORS:
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+*/
+
+/* reseting and setting defaults using the universal selector '*' */
+
+*,
+*::after,
+*::before {
+	margin:0;
+	padding: 0;
+	box-sizing: inherit; /*forcing the box sizing property to be inherited as this is a good practice*/
+}
+
+html{
+	font-size: 62.5%; /*we set the root font size to 62.5% of the default provided by the browser which is equal to 10px in this case so now 1rem = 10px leading to easy calculations. Also we can use breakpoints to change only this instead of everything. Also the user can now freely change everything */
+}
+
+body{
+	font-family: 'lato',sans-serif;
+	font-weight: 400;
+	/*font-size: 16px;*/
+	line-height: 1.7; /*1.7 times bigger than the predefined line-height*/
+	color:#777;
+	padding: 3rem;
+	box-sizing:border-box; /*border and padding are excluded from height and width calculations*/
+}
+
+/*.....*/
+
+.header{
+	height: 95vh;
+	background-image: linear-gradient(
+		to right bottom,
+		rgba(126, 213, 111,0.8),
+		rgba(40, 180, 131, 0.80)),
+	url(../img/hero.jpg); /*gradient moves from left to right and the color moves from light green to dark green */
+
+	background-size: cover; /*always fit the image inside the box*/
+	background-position: top; /*crops the bottom as viewport size changes but top remains fixed*/
+
+	clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /*clippy for ready made polygons*/
+	position: relative; /*makes this container act as reference to  its children*/
+}
+
+.header__logo-box{
+	position: absolute;
+	top: 4rem; /*this means 40px from the top of the parent*/
+	left: 4rem; /*this means 40px from the left of the parent*/
+}
+
+.header__logo{
+	height: 3.5rem;
+}
+
+.header__text-box{
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%,-50%); /*shift the element itself with respect to itself, in this case, 50% of the element width to the left and 50% of the element height to the top */
+	text-align: center;
+}
+
+.heading-primary{
+	color: #fff;
+	text-transform: uppercase;
+
+	backface-visibility: hidden; /*we do this ro remove the mysterious shake after the animation ends*/
+	margin-bottom: 6rem;
+}
+
+.heading-primary--main{
+	display: block; /*display block means the box will take up full width available and also adds line breaks before and after*/
+	font-size: 6rem;
+	font-weight: 400;
+	letter-spacing: 3.5rem;
+
+	animation-name: moveInLeft;
+	animation-duration: 1s;
+	animation-timing-function: ease-out;
+
+	/*
+	animation-delay: 3s;
+	animation-iteration-count: 3;
+	*/
+}
+
+.heading-primary--sub{
+	display: block;
+	font-size: 2rem;
+	font-weight: 700;
+	letter-spacing: 1.75rem;
+	animation: moveInRight 1s ease-out; /* short version*/ 
+}
+
+@keyframes moveInLeft{
+	0%{opacity: 0; transform: translateX(-10rem);}
+	80%{transform: translateX(1rem);}
+	100%{opacity: 1; transform: translate(0);}
+}/*It says at the start of the animation the opacity is 0 and the postiton is 100px to the left of original position. At the end the opacity is 1 and it's back at its original position*/
+
+@keyframes moveInRight{
+	0%{opacity: 0; transform: translateX(10rem);}
+	80%{transform: translateX(-1rem);}
+	100%{opacity: 1; transform: translate(0);}
+}
+
+@keyframes moveInBottom{
+	0%{opacity: 0; transform: translateY(3rem);}
+	100%{opacity: 1; transform: translate(0);}
+}
+
+.btn:link,
+.btn:visited {
+	position: relative;
+	font-size: 1.6rem;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 1.5rem 4rem;
+	display: inline-block; /*inline block adds breakpoints but does not take up the full space available*/
+
+	border-radius: 10rem;
+	transition: all .2s; /*this says animate all transforms */
+
+} /*we want the button to look same after/before being visited*/  
+
+.btn:hover{
+	transform: translateY(-0.3rem);
+	box-shadow: 0 1rem 2rem rgba(0,0,0,0.2); /*(x,y,blur,color)*/
+}
+
+.btn:active {
+	transform: translateY(-0.1rem);
+	box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.2)
+} /*active state means that it is clicked. So on hover the button goes 3px up and then it goes to a point 1px up from the intital position on click so it seems like on click it moves 2px down*/
+
+.btn--white {
+	background-color: #fff;
+	color: #777;
+}
+
+.btn::after {
+	content: "";
+	display: inline-block;
+	height: 100%; /*100% of the button*/
+	width: 100%;
+	border-radius: 10rem;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	transition: all .4s; 
+
+} 
+/*the trick is to create a copy of the it's parent which in this case is the button */
+
+.btn--white::after {
+	background-color: #fff;
+}
+
+.btn:hover::after {
+	transform: scaleX(1.4) scaleY(1.6);
+	opacity: 0;
+} /*apply the effect to the pseudo element only when the parent is hovered on */
+
+.btn--animated {
+	animation: moveInBottom .5s ease-out .75s; /*.75 is the delay*/
+	animation-fill-mode: backwards; /*applies the style of 0% before the animation starts*/
+}
+
