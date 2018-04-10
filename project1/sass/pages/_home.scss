@@ -27,3 +27,28 @@
     padding: 15rem 0;
     position: relative;
 }
+
+.section-book {
+    padding: 15rem 0;
+    position: relative;
+    background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+}
+
+.book{
+    background-image: linear-gradient(
+        105deg,
+        rgba($color-white, 0.9) 0%,
+        rgba($color-white, 0.9) 50%,
+        transparent 50% ),
+        url(../img/nat-10.jpg); //we can use gradient to emulate clip path in some cases. In this case color is white at 0%,50% and it is transparent from 50-100% which manifests as a 'sharp' division. If the second element had been 40% then from 40% to 50% there would have been a gradient. 
+
+    background-size: 100%; //same as cover
+    height: 50rem;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+    border-radius: 3px;
+
+    &__form {
+        width: 50%;
+        padding: 6rem;
+    }
+}
