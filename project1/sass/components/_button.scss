@@ -1,4 +1,5 @@
 .btn{
+	&,
 	&:link,
 	&:visited {
 		position: relative;
@@ -6,13 +7,15 @@
 		text-transform: uppercase;
 		text-decoration: none;
 		padding: 1.5rem 4rem;
-		display: inline-block; /*inline block adds breakpoints but does not take up the full space available*/
-
+		display: inline-block; 
 		border-radius: 10rem;
-		transition: all .2s; /*this says animate all transforms */
+		transition: all .2s; 
 
-	} /*we want the button to look same after/before being visited*/  
-	
+		//Changes for the <button> element
+		border:none;
+		cursor: pointer;
+ 	} 
+
 	&:hover{
 		transform: translateY(-0.3rem);
 		box-shadow: 0 1rem 2rem rgba($color-black,0.2); /*(x,y,blur,color)*/
@@ -23,7 +26,9 @@
 		} /*apply the effect to the pseudo element only when the parent is hovered on */
 	}
 
-	&:active {
+	&:active,
+	&:focus {
+		outline: none;
 		transform: translateY(-0.1rem);
 		box-shadow: 0 0.5rem 1rem rgba($color-black,0.2)
 	} /*active state means that it is clicked. So on hover the button goes 3px up and then it goes to a point 1px up from the intital position on click so it seems like on click it moves 2px down*/
