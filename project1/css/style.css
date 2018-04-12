@@ -396,17 +396,17 @@ body {
     transform: scale(0.95); }
 
 .btn {
-  /*active state means that it is clicked. So on hover the button goes 3px up and then it goes to a point 1px up from the intital position on click so it seems like on click it moves 2px down*/
+  /*active state means that it is clicked. So on hover the button goes 3px up and then on click it goes to a point 1px up from the intital position so it seems like on click it moves 2px down*/
   /*the trick is to create a copy of the it's parent which in this case is the button */ }
   .btn, .btn:link, .btn:visited {
-    position: relative;
-    font-size: 1.6rem;
     text-transform: uppercase;
     text-decoration: none;
     padding: 1.5rem 4rem;
     display: inline-block;
     border-radius: 10rem;
     transition: all .2s;
+    position: relative;
+    font-size: 1.6rem;
     border: none;
     cursor: pointer; }
   .btn:hover {
